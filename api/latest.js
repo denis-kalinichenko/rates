@@ -20,6 +20,8 @@ const getRates = () => ({
     },
 });
 
+const date = new Date().toLocaleDateString('en-CA');
+
 export default async function handler(req, res) {
     const { base, symbols } = req.query;
     res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400');
@@ -28,7 +30,7 @@ export default async function handler(req, res) {
 
     if (!base) {
         return res.json({
-            date: new Date().toLocaleDateString('en-CA'),
+            date,
             rates,
         });
     }
@@ -54,14 +56,14 @@ export default async function handler(req, res) {
 
         return res.json({
             base,
-            date: new Date().toLocaleDateString('en-CA'),
+            date,
             rates: filtered,
         });
     }
 
     return res.json({
         base,
-        date: new Date().toLocaleDateString('en-CA'),
+        date,
         rates: rates[base],
     });
 }
