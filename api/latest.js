@@ -24,6 +24,7 @@ const date = new Date().toLocaleDateString('en-CA');
 
 export default async function handler(req, res) {
     const { base, symbols } = req.query;
+    res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400');
 
     const rates = getRates();
